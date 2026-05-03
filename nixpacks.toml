@@ -1,2 +1,5 @@
+[phases.build]
+cmds = []
+
 [start]
-cmd = "npx serve ."
+cmd = "npx serve . -l $PORT"
