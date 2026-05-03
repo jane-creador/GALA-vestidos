@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE Couture | Renta de Vestidos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Variables ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black:      #0a0a0a;
+            --dark:       #141414;
+            --dark-gray:  #1a1a1a;
+            --gold:       #c9a84c;
+            --gold-light: #e2c06a;
+            --silver:     #c0c0c0;
+            --white:      #ffffff;
+            --off-white:  #f8f5f0;
+            --serif:      'Playfair Display', Georgia, serif;
+            --sans:       'Montserrat', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* ── Shared Utilities ── */
+        .container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .section { padding: 110px 0; }
+
+        .section-header { text-align: center; margin-bottom: 72px; }
+
+        .eyebrow {
+            font-family: var(--sans);
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .divider {
+            width: 56px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 0 auto;
+        }
+
+        /* ════════════════════════════════════
+           ANNOUNCEMENT BAR
+        ════════════════════════════════════ */
+        .announcement-bar {
+            background-color: var(--black);
+            color: var(--gold);
+            text-align: center;
+            padding: 11px 24px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        .announcement-bar .sep {
+            color: rgba(201,168,76,0.4);
+            margin: 0 18px;
+        }
+
+        /* ════════════════════════════════════
+           HEADER / NAV
+        ════════════════════════════════════ */
+        .site-header {
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(201,168,76,0.18);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 0;
+        }
+
+        /* Logo – LEFT */
+        .logo { text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; }
+
+        .logo-wordmark {
+            font-family: var(--serif);
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .logo-tagline {
+            font-size: 0.58rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        /* Nav links – RIGHT */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 38px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background-color: var(--black) !important;
+            color: var(--white) !important;
+            padding: 13px 30px !important;
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .nav-cta:hover {
+            background-color: var(--gold) !important;
+            color: var(--black) !important;
+        }
+
+        /* ════════════════════════════════════
+           HERO
+        ════════════════════════════════════ */
+        .hero {
+            position: relative;
+            height: 94vh;
+            min-height: 580px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1566174053879-31528523f8ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85');
+            background-size: cover;
+            background-position: center 25%;
+            filter: brightness(0.48);
+            transform: scale(1.03);
+            transition: transform 9s ease;
+        }
+
+        .hero:hover .hero-bg { transform: scale(1.08); }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg,
+                rgba(10,10,10,0.80) 0%,
+                rgba(10,10,10,0.35) 55%,
+                transparent 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 44px;
+            height: 1px;
+            background-color: var(--gold);
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 6vw, 5.4rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 26px;
+            max-width: 640px;
+        }
+
+        .hero-title em { color: var(--gold); font-style: italic; }
+
+        .hero-desc {
+            font-size: 0.92rem;
+            color: rgba(192,192,192,0.9);
+            max-width: 400px;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 44px;
+        }
+
+        .hero-actions { display: flex; gap: 22px; align-items: center; }
+
+        .btn-gold {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            padding: 17px 44px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(201,168,76,0.4);
+        }
+
+        .btn-ghost {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(192,192,192,0.6);
+            padding-bottom: 4px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+        /* Scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 44px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: rgba(192,192,192,0.55);
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .scroll-bar {
+            width: 1px;
+            height: 52px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: drop 2.2s ease-in-out infinite;
+        }
+
+        @keyframes drop {
+            0%   { transform: scaleY(0); transform-origin: top;    opacity: 1; }
+            50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+            51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        }
+
+        /* ════════════════════════════════════
+           TRUST STRIP
+        ════════════════════════════════════ */
+        .trust-strip {
+            background-color: var(--black);
+            padding: 28px 0;
+            border-top: 1px solid rgba(201,168,76,0.25);
+            border-bottom: 1px solid rgba(201,168,76,0.25);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 32px;
+            border-right: 1px solid rgba(201,168,76,0.18);
+        }
+
+        .trust-item:last-child { border-right: none; }
+
+        .trust-icon { color: var(--gold); font-size: 1.4rem; flex-shrink: 0; }
+
+        .trust-label strong {
+            display: block;
+            font-family: var(--serif);
+            color: var(--white);
+            font-size: 0.92rem;
+            margin-bottom: 3px;
+        }
+
+        .trust-label span {
+            color: var(--silver);
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ════════════════════════════════════
+           CATEGORIES
+        ════════════════════════════════════ */
+        .categories-section { background-color: var(--off-white); }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .cat-card {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            background-color: var(--black);
+            cursor: pointer;
+        }
+
+        .cat-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.75s ease, filter 0.75s ease;
+            filter: brightness(0.62);
+        }
+
+        .cat-card:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.42);
+        }
+
+        .cat-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, transparent 55%);
+        }
+
+        .cat-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 28px 22px;
+        }
+
+        .cat-tag {
+            font-size: 0.62rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .cat-name {
+            font-family: var(--serif);
+            font-size: 1.45rem;
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cat-count {
+            font-size: 0.74rem;
+            color: var(--silver);
+        }
+
+        .cat-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 14px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+        }
+
+        .cat-card:hover .cat-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ════════════════════════════════════
+           VIDEO SECTION
+        ════════════════════════════════════ */
+        .video-section {
+            background-color: var(--dark);
+            padding: 110px 0;
+        }
+
+        .video-section .section-title { color: var(--white); }
+
+        .video-inner { text-align: center; }
+
+        .video-desc {
+            color: rgba(192,192,192,0.85);
+            font-size: 0.9rem;
+            line-height: 1.95;
+            max-width: 520px;
+            margin: 0 auto 44px;
+            font-weight: 300;
+        }
+
+        .video-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            padding: 20px 56px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .video-btn:hover {
+            background-color: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 48px rgba(201,168,76,0.3);
+        }
+
+        .play-circle {
+            width: 26px;
+            height: 26px;
+            border: 1.5px solid currentColor;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            padding-left: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ════════════════════════════════════
+           FOOTER
+        ════════════════════════════════════ */
+        footer {
+            background-color: var(--dark-gray);
+            padding: 70px 0 32px;
+            border-top: 1px solid rgba(201,168,76,0.25);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 64px;
+            margin-bottom: 56px;
+        }
+
+        /* Brand column */
+        .footer-brand .logo-wordmark { color: var(--white); font-size: 1.5rem; }
+
+        .footer-brand p {
+            color: rgba(192,192,192,0.7);
+            font-size: 0.84rem;
+            line-height: 1.85;
+            margin-top: 18px;
+            font-weight: 300;
+            max-width: 270px;
+        }
+
+        /* Nav column */
+        .footer-col h4 {
+            font-size: 0.62rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 22px;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 13px; }
+
+        .footer-col ul li a {
+            color: rgba(192,192,192,0.75);
+            text-decoration: none;
+            font-size: 0.84rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--gold); }
+
+        /* Info cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .info-card {
+            background-color: rgba(201,168,76,0.05);
+            border: 1px solid rgba(201,168,76,0.18);
+            padding: 16px 18px;
+        }
+
+        .info-card label {
+            display: block;
+            font-size: 0.58rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 7px;
+        }
+
+        .info-card span {
+            color: var(--white);
+            font-family: var(--serif);
+            font-size: 0.88rem;
+        }
+
+        .info-card a {
+            color: rgba(192,192,192,0.75);
+            text-decoration: none;
+            font-size: 0.84rem;
+            word-break: break-all;
+            transition: color 0.3s;
+        }
+
+        .info-card a:hover { color: var(--gold); }
+
+        /* Bottom bar */
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding-top: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-bottom p {
+            color: rgba(192,192,192,0.4);
+            font-size: 0.73rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-bottom .accent { color: var(--gold); }
+
+        /* ════════════════════════════════════
+           RESPONSIVE
+        ════════════════════════════════════ */
+        @media (max-width: 1100px) {
+            .cat-grid      { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid   { grid-template-columns: 1fr 1fr; }
+            .footer-brand  { grid-column: 1 / -1; }
+            .trust-grid    { grid-template-columns: repeat(2, 1fr); }
+            .trust-item:nth-child(2) { border-right: none; }
+            .trust-item:nth-child(3) { border-right: 1px solid rgba(201,168,76,0.18); }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            .nav { flex-direction: column; gap: 18px; }
+            .nav-links { gap: 22px; flex-wrap: wrap; justify-content: center; }
+            .hero-title { font-size: 2.4rem; }
+            .hero-actions { flex-direction: column; align-items: flex-start; }
+            .cat-grid    { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+            .trust-grid  { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .cat-grid   { grid-template-columns: 1fr; }
+            .info-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── ANNOUNCEMENT BAR ─── -->
+<div class="announcement-bar">
+    ✦ Reserva con anticipación
+    <span class="sep">|</span>
+    Primera renta con 15&nbsp;% de descuento
+    <span class="sep">|</span>
+    Envío a domicilio disponible ✦
+</div>
+
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+    <div class="container">
+        <nav class="nav">
+
+            <!-- Logo LEFT -->
+            <a href="#inicio" class="logo">
+                <span class="logo-wordmark">GALA</span>
+                <span class="logo-tagline">Vestidos &middot; Elegancia y Glamour</span>
+            </a>
+
+            <!-- Nav RIGHT -->
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#categorias">Colecciones</a></li>
+                <li><a href="#video">Inspiración</a></li>
+                <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+            </ul>
+
+        </nav>
+    </div>
+</header>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-gradient"></div>
+
+        <div class="hero-content">
+            <p class="hero-eyebrow">Colección 2025</p>
+
+            <h1 class="hero-title">
+                Luce <em>perfecta</em><br>en cada momento especial
+            </h1>
+
+            <p class="hero-desc">
+                Vestidos de alta costura para graduaciones, quinceañeras, fiestas y bodas.
+                Cada ocasión merece un look verdaderamente inolvidable.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#categorias" class="btn-gold">Ver Colecciones</a>
+                <a href="#video" class="btn-ghost">Descubrir más →</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="scroll-bar"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ══ TRUST STRIP ══ -->
+    <div class="trust-strip">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <span class="trust-icon">✦</span>
+                    <div class="trust-label">
+                        <strong>Alta Costura</strong>
+                        <span>Diseñadores exclusivos</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">◇</span>
+                    <div class="trust-label">
+                        <strong>Tallas XS – 3XL</strong>
+                        <span>Inclusividad garantizada</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✿</span>
+                    <div class="trust-label">
+                        <strong>Accesorios Incluidos</strong>
+                        <span>Look completo sin costo extra</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">◈</span>
+                    <div class="trust-label">
+                        <strong>Reserva en Línea</strong>
+                        <span>Fácil, rápido y seguro</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CATEGORIES ══ -->
+    <section class="section categories-section" id="categorias">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="eyebrow">Explora</span>
+                <h2 class="section-title">Nuestras Colecciones</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="cat-grid">
+
+                <!-- Graduación -->
+                <div class="cat-card">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         alt="Vestidos de Graduación" loading="lazy">
+                    <div class="cat-overlay"></div>
+                    <div class="cat-body">
+                        <p class="cat-tag">Colección</p>
+                        <h3 class="cat-name">Graduación</h3>
+                        <p class="cat-count">+48 vestidos disponibles</p>
+                        <span class="cat-cta">Ver colección →</span>
+                    </div>
+                </div>
+
+                <!-- Fiesta -->
+                <div class="cat-card">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         alt="Vestidos de Fiesta" loading="lazy">
+                    <div class="cat-overlay"></div>
+                    <div class="cat-body">
+                        <p class="cat-tag">Colección</p>
+                        <h3 class="cat-name">Fiesta</h3>
+                        <p class="cat-count">+72 vestidos disponibles</p>
+                        <span class="cat-cta">Ver colección →</span>
+                    </div>
+                </div>
+
+                <!-- Quinceañera -->
+                <div class="cat-card">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         alt="Vestidos de Quinceañera" loading="lazy">
+                    <div class="cat-overlay"></div>
+                    <div class="cat-body">
+                        <p class="cat-tag">Colección</p>
+                        <h3 class="cat-name">Quinceañera</h3>
+                        <p class="cat-count">+35 vestidos disponibles</p>
+                        <span class="cat-cta">Ver colección →</span>
+                    </div>
+                </div>
+
+                <!-- Boda -->
+                <div class="cat-card">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         alt="Vestidos de Boda" loading="lazy">
+                    <div class="cat-overlay"></div>
+                    <div class="cat-body">
+                        <p class="cat-tag">Colección</p>
+                        <h3 class="cat-name">Boda</h3>
+                        <p class="cat-count">+56 vestidos disponibles</p>
+                        <span class="cat-cta">Ver colección →</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ VIDEO ══ -->
+    <section class="video-section" id="video">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="eyebrow">Inspiración</span>
+                <h2 class="section-title">El Arte de Vestirse</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="video-inner">
+                <p class="video-desc">
+                    Descubre las últimas tendencias en moda de alta costura.
+                    Desde la pasarela hasta tu evento especial, encuentra
+                    la inspiración perfecta para tu gran noche.
+                </p>
+
+                <a href="https://www.youtube.com/results?search_query=vestidos+de+noche+alta+costura+2025"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="video-btn">
+                    <span class="play-circle">▶</span>
+                    Ver Video de Moda
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer id="contacto">
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <!-- Brand -->
+            <div class="footer-brand footer-col">
+                <a href="#inicio" class="logo">
+                    <span class="logo-wordmark">GALA</span>
+                    <span class="logo-tagline">Vestidos &middot; Elegancia y Glamour</span>
+                </a>
+                <p>Vestidos de alta costura para tus momentos más especiales.
+                   Elegancia, calidad y exclusividad en cada pieza de nuestra colección.</p>
+            </div>
+
+            <!-- Nav links -->
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#categorias">Colecciones</a></li>
+                    <li><a href="#video">Inspiración</a></li>
+                    <li><a href="#contacto">Reservar</a></li>
+                </ul>
+            </div>
+
+            <!-- Project info -->
+            <div class="footer-col">
+                <h4>Información del Proyecto</h4>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <label>Curso</label>
+                        <span>Conceptualización de servicios en la nube</span>
+                    </div>
+                    <div class="info-card">
+                        <label>Código</label>
+                        <span>211698336</span>
+                    </div>
+                    <div class="info-card">
+                        <label>Estudiante</label>
+                        <span>Angeles Esparza Vargas</span>
+                    </div>
+                    <div class="info-card">
+                        <label>Correo</label>
+                        <a href="mailto:angeles.esparza9833@alumnos.udg.mx">angeles.esparza9833@alumnos.udg.mx</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span class="accent">GALA Vestidos</span>. Todos los derechos reservados.</p>
+            <p>Diseñado con <span class="accent">♦</span> para el curso de <span class="accent">Desarrollo Web</span></p>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
